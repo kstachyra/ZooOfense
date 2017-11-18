@@ -97,7 +97,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1983986565580370}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 19.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4372491443600734}
@@ -111,7 +111,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1619302498721330}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.135, z: -0.88}
+  m_LocalPosition: {x: 0, y: 0.135, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4256530103779044}
@@ -202,6 +202,8 @@ MonoBehaviour:
   tileX: 0
   tileY: 0
   hand: {fileID: 4372491443600734}
+  kula_Pingwin: {fileID: 1672920614022794, guid: 7445e6b7346e53741909cbe3d102503e,
+    type: 2}
 --- !u!212 &212712753561063936
 SpriteRenderer:
   m_ObjectHideFlags: 1

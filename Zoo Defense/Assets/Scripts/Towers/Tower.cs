@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Tower : MonoBehaviour
 {
@@ -45,6 +46,20 @@ public class Tower : MonoBehaviour
 
     public virtual void Attack()
     {
+        FocusEnemy();
+        DealDamage();
+    }
+
+    public virtual void DealDamage()
+    {
+        if(focusedEnemy != null)
+        {
+            focusedEnemy.DealDamage(attackPower);
+        }
+    }
+
+    public virtual void FocusEnemy()
+    {
         while(enemiesInSight.Count > 0 && enemiesInSight[0] == null && !enemiesInSight[0].IsDead())
         {
             enemiesInSight.RemoveAt(0);
@@ -53,7 +68,6 @@ public class Tower : MonoBehaviour
         if(enemiesInSight.Count > 0)
         {
             focusedEnemy = enemiesInSight[0];
-            enemiesInSight[0].DealDamage(attackPower);
         }
         else
         {
@@ -74,13 +88,18 @@ public class Tower : MonoBehaviour
 
     public void OnMouseDown()
     {
-        Debug.Log("towerClicked");
-        //needs some ui display
+        if(!EventSystem.current.IsPointerOverGameObject())
+        {
+            Debug.Log("towerClicked");
+            UIManager.instance.SetSellCanvas(DestroyTower, transform.position);
+            UIManager.instance.DisableTowerClick();
+        }
     }
 
     public void DestroyTower()
     {
         GameManager.instance.RemoveTower(this);
+        UIManager.instance.HideSellButton();
         Destroy(gameObject);
     }
 
