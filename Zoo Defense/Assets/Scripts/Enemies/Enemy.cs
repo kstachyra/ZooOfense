@@ -17,15 +17,14 @@ public class Enemy : MonoBehaviour
         destination = tile;
     }
 
-    private void Start()
+    public void Start()
     {//temp test
         Queue<Vector2> stack = new Queue<Vector2>();
-        stack.Enqueue(new Vector2(7, 8));
-        stack.Enqueue(new Vector2(6, 8));
-        stack.Enqueue(new Vector2(6, 7));
-        stack.Enqueue(new Vector2(6, 6));
-        stack.Enqueue(new Vector2(6, 5));
-        stack.Enqueue(new Vector2(5, 5));
+        stack.Enqueue(new Vector2(3, 4));
+        stack.Enqueue(new Vector2(3, 3));
+        stack.Enqueue(new Vector2(2, 3));
+        stack.Enqueue(new Vector2(1, 3));
+        stack.Enqueue(new Vector2(0, 3));
 
         SetPath(stack);
     }
@@ -39,6 +38,8 @@ public class Enemy : MonoBehaviour
     private void MoveTo(Vector2 point)
     {
         GameManager.instance.enemiesCount[(int)point.x, (int)point.y]++;
+
+        transform.localScale = new Vector3(point.x - transform.localPosition.x > 0 ? 1 : -1, 1, 1);
 
         transform.DOMove(point, 1 / speed).SetEase(Ease.Linear).OnComplete(() =>
               {
