@@ -6,11 +6,26 @@ using DG.Tweening;
 public class Tower1 : Tower
 {
     public Transform hand;
+    public GameObject kula_Pingwin;
 
     public override void Attack()
     {
-        base.Attack();
-
+        base.FocusEnemy();
+        GameObject kula = Instantiate(kula_Pingwin);
+        kula.transform.position = transform.position;
+        if(focusedEnemy != null)
+        {
+            float distance = Vector3.Distance(transform.position, focusedEnemy.transform.position);
+            kula.transform.DOMove(focusedEnemy.transform.position + new Vector3(0, -0.2f, -0.5f), 0.05f * distance).SetEase(Ease.InSine).OnComplete(() =>
+              {
+                  kula.transform.DOScale(Vector3.zero, 0.05f).OnComplete(() =>
+                   {
+                       kula.transform.GetComponent<SpriteRenderer>().enabled = false;
+                       kula.transform.GetChild(0).gameObject.SetActive(true);
+                       kula.transform.DOScale(Vector3.one, 0.2f).OnComplete(() => { Destroy(kula); base.DealDamage(); });
+                   });
+              });
+        }
     }
 
     public void Update()

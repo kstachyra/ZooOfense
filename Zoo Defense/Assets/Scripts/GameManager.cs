@@ -93,7 +93,6 @@ public class GameManager : MonoBehaviour
     public void RemoveTower(Tower tower)
     {
         map[tower.tileX, tower.tileY].RemoveTower();
-        map[tower.tileX, tower.tileY] = null;
         towersMap[tower.tileX, tower.tileY] = false;
         RecalculatePaths();
     }

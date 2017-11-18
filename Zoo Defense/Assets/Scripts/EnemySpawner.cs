@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public Object Enemy;
+    public GameObject Enemy;
 
     public AnimationCurve wave;
     public int roundTime;
@@ -50,7 +50,7 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnEnemies()
     {
-        while (true)
+        while(true)
         {
             float timePassed = (Time.time - startTime);
             float timeLeft = roundTime - timePassed;
@@ -59,14 +59,14 @@ public class EnemySpawner : MonoBehaviour
             howMany++;
             spawned += howMany;
 
-            for (int i = 0; i < howMany; ++i)
+            for(int i = 0; i < howMany; ++i)
             {
                 int enemyType = 0;
 
                 //upgrade enemy
-                for (int e = 0; e < enemyTypes; ++e)
+                for(int e = 0; e < enemyTypes; ++e)
                 {
-                    if (UnityEngine.Random.Range(0.0f, 2f) < wave.Evaluate(timePassed / roundTime))
+                    if(UnityEngine.Random.Range(0.0f, 2f) < wave.Evaluate(timePassed / roundTime))
                     {
                         enemyType++;
                     }
@@ -76,7 +76,7 @@ public class EnemySpawner : MonoBehaviour
 
             yield return new WaitForSeconds(timeFrame);
 
-            if (toSpawn - spawned <= 0)
+            if(toSpawn - spawned <= 0)
             {
                 EndLevel();
                 yield break;
