@@ -140,7 +140,7 @@ MonoBehaviour:
   speed: 0.5
   life: 54
   moneyDrop: 23
-  cage: {fileID: 0}
+  cage: {fileID: 1473682396028090}
 --- !u!212 &212661934281064422
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         GameManager.instance.AddMoney(moneyDrop);
-        Destroy(gameObject);
+        PlayDeathAnimation();
     }
 
     private void PlayDeathAnimation()
