@@ -216,30 +216,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da45ee5123180a4396d4034560dac34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy1: {fileID: 0}
-  Enemy2: {fileID: 0}
+  Enemy1: {fileID: 1554900125980932, guid: feb8816bc6a304241908dad56ce75c38, type: 2}
+  Enemy2: {fileID: 1554900125980932, guid: f6172ce780b9c6d4d96f29db4c6258de, type: 2}
   Enemy3: {fileID: 0}
   wave:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: -0.0052687037
-      value: 0.505618
+      time: -0.0007521021
+      value: 0.09656036
       inSlope: 0
       outSlope: 0
       tangentMode: 136
     - serializedVersion: 2
-      time: 0.26027396
-      value: 0.83146065
-      inSlope: 0
-      outSlope: 0
+      time: 0.19478324
+      value: 0.4969346
+      inSlope: 0.023852464
+      outSlope: 0.023852464
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.6027985
+      value: 0.60569155
+      inSlope: 0.57979953
+      outSlope: 0.57979953
       tangentMode: 136
     - serializedVersion: 2
-      time: 0.66280293
-      value: 0.3775281
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
+      time: 0.94509053
+      value: 0.9586419
+      inSlope: -0.5074702
+      outSlope: -0.5074702
+      tangentMode: 0
     - serializedVersion: 2
       time: 1.0010537
       value: 0.6
@@ -249,9 +255,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  roundTime: 120
-  enemies: 30
-  enemyTypes: 1
+  roundTime: 60
+  enemies: 40
+  enemyTypes: 2
 --- !u!1 &66788722
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +424,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 217192207}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 399.9, y: 177.21713, z: 0}
+  m_LocalPosition: {x: 399.9, y: 185.04695, z: 0}
   m_LocalScale: {x: 1.0000004, y: 1.0000004, z: 1.0000004}
   m_Children: []
   m_Father: {fileID: 1354514195}
@@ -2963,7 +2969,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1111605879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -395, y: 177.21722, z: 0}
+  m_LocalPosition: {x: -395, y: 185.04706, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1354514195}
@@ -3380,8 +3386,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1354514191}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 383, y: 163, z: 0}
-  m_LocalScale: {x: 0.7092593, y: 0.7092593, z: 0.7092593}
+  m_LocalPosition: {x: 459, y: 202, z: 0}
+  m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
   m_Children:
   - {fileID: 1111605880}
   - {fileID: 217192208}
