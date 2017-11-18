@@ -194,6 +194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2e2199eb2a0a2e4983dae98c87194a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradeCost: 14000000280000003c000000
+  currentLevel: 0
   attackPower: 7
   speedFrequency: 0.8
   range: 3

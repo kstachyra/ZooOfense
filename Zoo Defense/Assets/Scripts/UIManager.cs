@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     public static int selectedTower = -1;
 
+    public Button upgradeButton;
     public Transform sellCanvas;
     public Button sellButton;
     public Text levelText;
@@ -73,6 +74,24 @@ public class UIManager : MonoBehaviour
         sellButton.transform.DOScale(1, 0.1f);
         sellButton.onClick.AddListener(() => onClick());
         sellCanvas.transform.position = new Vector3(position.x, position.y, -0.5f);
+    }
+
+    public void SetUpgradeCanvas(bool noUpgrades, Action onClick, Vector2 position)
+    {
+        if(noUpgrades)
+        {
+            upgradeButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            upgradeButton.onClick.RemoveAllListeners();
+            sellCanvas.gameObject.SetActive(true);
+            upgradeButton.transform.localScale = Vector3.zero;
+            upgradeButton.transform.DOScale(1, 0.1f);
+            upgradeButton.interactable = onClick != null;
+            upgradeButton.onClick.AddListener(() => onClick());
+            sellCanvas.transform.position = new Vector3(position.x, position.y, -0.5f);
+        }
     }
 
     public void HideSellButton()

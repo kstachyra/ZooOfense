@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public static event Action onMapChange;
+    public static event Action onMoneyChange;
     public static Node destination;
 
     public int money = 3000;
@@ -33,7 +34,7 @@ public class GameManager : MonoBehaviour
         Astar.SetGrid(towersMap);
 
         GenerateMap(ySize, xSize);
-        Camera.main.transform.position = new Vector3((ySize - 3) / 2f, (xSize ) / 2f, -1);
+        Camera.main.transform.position = new Vector3((ySize - 3) / 2f, (xSize) / 2f, -1);
     }
 
     void Start()
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour
         {
             UIManager.instance.SetTower(i, towers[i].cost, towers[i].icon);
         }
-        UpdateUI();
+        MoneyChange();
         spawner.StartNewLevel();
     }
 
@@ -70,8 +71,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void UpdateUI()
+    private void MoneyChange()
     {
+        if(onMoneyChange != null)
+        {
+            onMoneyChange();
+        }
         UIManager.instance.SetMoney(money);
     }
 
@@ -86,7 +91,7 @@ public class GameManager : MonoBehaviour
         {
             map[x, y].AddTower(towers[towerID]);
             money -= towers[towerID].cost;
-            UpdateUI();
+            MoneyChange();
         }
     }
 
@@ -100,7 +105,7 @@ public class GameManager : MonoBehaviour
     public void AddMoney(int money)
     {
         this.money += money;
-        UpdateUI();
+        MoneyChange();
     }
 
     private bool IsNotBlockingEnemies(int X, int Y)

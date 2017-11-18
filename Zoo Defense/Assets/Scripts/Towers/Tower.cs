@@ -5,6 +5,9 @@ using UnityEngine.EventSystems;
 
 public class Tower : MonoBehaviour
 {
+    public int[] upgradeCost;
+    public int currentLevel = 0;
+
     public float attackPower;
     public float speedFrequency; // lower means better, 0.5 means attack every 0.5s 
     public float range;
@@ -40,7 +43,7 @@ public class Tower : MonoBehaviour
 
             Attack();
 
-            yield return new WaitForSeconds(speedFrequency);
+            yield return new WaitForSeconds(speedFrequency - (0.15f * currentLevel * speedFrequency));
         }
     }
 
@@ -54,7 +57,7 @@ public class Tower : MonoBehaviour
     {
         if(focusedEnemy != null)
         {
-            focusedEnemy.DealDamage(attackPower);
+            focusedEnemy.DealDamage(attackPower + (0.15f * currentLevel * attackPower));
         }
     }
 
@@ -90,10 +93,24 @@ public class Tower : MonoBehaviour
     {
         if(!EventSystem.current.IsPointerOverGameObject())
         {
-            Debug.Log("towerClicked");
             UIManager.instance.SetSellCanvas(DestroyTower, transform.position);
+            if(currentLevel < upgradeCost.Length && (upgradeCost[currentLevel] - GameManager.instance.money) <= 0)
+            {
+                UIManager.instance.SetUpgradeCanvas(currentLevel == upgradeCost.Length - 1, UpgradeTower, transform.position);
+            }
+            else
+            {
+                UIManager.instance.SetUpgradeCanvas(currentLevel == upgradeCost.Length - 1, null, transform.position);
+            }
             UIManager.instance.DisableTowerClick();
         }
+    }
+
+    public void UpgradeTower()
+    {
+        GameManager.instance.AddMoney(-upgradeCost[currentLevel]);
+        enemyFinder.SetRadius(range + (0.15f * currentLevel * range));
+        currentLevel++;
     }
 
     public void DestroyTower()

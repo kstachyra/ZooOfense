@@ -17,10 +17,10 @@ public class Tower3 : Tower
     IEnumerator WaitAndSpawnNut()
     {
         yield return new WaitForSeconds(0.5f);
-        GameObject kula = Instantiate(nutPrefab);
-        kula.transform.position = transform.position;
         if(focusedEnemy != null)
         {
+            GameObject kula = Instantiate(nutPrefab);
+            kula.transform.position = transform.position;
             float distance = Vector3.Distance(transform.position, focusedEnemy.transform.position);
             kula.GetComponent<Rigidbody2D>().AddTorque(1000, ForceMode2D.Force);
             kula.transform.DOMove(focusedEnemy.transform.position + new Vector3(0, -0.2f, -0.5f), 0.03f * distance).SetEase(Ease.InSine).OnComplete(() =>

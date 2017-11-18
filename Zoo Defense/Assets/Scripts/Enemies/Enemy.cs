@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    public int[] updatesCost;
+    private int currentLevel;
+
     public float speed;
     public float life;
     public int moneyDrop;
@@ -21,7 +24,7 @@ public class Enemy : MonoBehaviour
     private bool died = false;
 
     public void Start()
-    {//temp test
+    {
         GameManager.onMapChange += OnRecalculatePath;
     }
 
