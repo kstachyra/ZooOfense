@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     public Text moneyText;
     public CanvasGroup moneyTextFade;
 
+    private Node currentNode;
     private Queue<Node> wayPoints;
     private bool pathChanged = false;
     private bool died = false;
@@ -34,7 +35,7 @@ public class Enemy : MonoBehaviour
     private void MoveTo(Node targetPosition)
     {
         GameManager.instance.enemiesCount[targetPosition.X, targetPosition.Y]++;
-
+        currentNode = targetPosition;
         transform.localScale = new Vector3(targetPosition.X - transform.localPosition.x > 0 ? 1 : -1, 1, 1);
 
         transform.DOMove(new Vector3(targetPosition.X, targetPosition.Y, transform.position.z), 1 / speed).SetEase(Ease.Linear).OnComplete(() =>
@@ -75,6 +76,7 @@ public class Enemy : MonoBehaviour
     private void Die()
     {
         died = true;
+        GameManager.instance.enemiesCount[currentNode.X, currentNode.Y]--;
         PlayDeathAnimation();
     }
 
