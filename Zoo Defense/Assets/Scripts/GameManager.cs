@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         Astar.SetGrid(towersMap);
 
         GenerateMap(ySize, xSize);
-        Camera.main.transform.position = new Vector3((ySize - 3) / 2f, (xSize - 1) / 2f, -1);
+        Camera.main.transform.position = new Vector3((ySize - 3) / 2f, (xSize ) / 2f, -1);
     }
 
     void Start()

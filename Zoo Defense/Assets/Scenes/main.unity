@@ -149,7 +149,7 @@ MonoBehaviour:
   - {fileID: 114389653127048752, guid: ea7dd61ba573a164f9762406f97fbce2, type: 2}
   - {fileID: 114221602191568456, guid: e895a8958a290a14e9301e9dfcd3c622, type: 2}
   tilePrefab: {fileID: 1329076371666472, guid: 5eb41554b0a67744fb110939a8dc3bbb, type: 2}
-  xSize: 7
+  xSize: 6
   ySize: 12
 --- !u!4 &53527926
 Transform:
@@ -419,7 +419,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 202658304}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.002105713, z: 0}
+  m_LocalPosition: {x: 0, y: 0.002105713, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1354514195}
@@ -443,7 +443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
