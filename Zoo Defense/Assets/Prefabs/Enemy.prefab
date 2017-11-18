@@ -175,9 +175,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf1eff8de323dc4eb9fcaedb8957f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
-  life: 54
-  moneyDrop: 23
+  speed: 0.7
+  life: 35
+  moneyDrop: 12
   cage: {fileID: 1473682396028090}
   moneyTextRect: {fileID: 224078887059176932}
   moneyText: {fileID: 114395670219985454}

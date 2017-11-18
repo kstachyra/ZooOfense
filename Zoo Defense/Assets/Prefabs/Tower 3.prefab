@@ -183,9 +183,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPower: 2
-  speedFrequency: 1
+  speedFrequency: 0.6
   range: 5
-  cost: 0
+  cost: 30
   icon: {fileID: 21300000, guid: 02546346491fb9c42a9fdc19989121aa, type: 3}
   tileX: 0
   tileY: 0
