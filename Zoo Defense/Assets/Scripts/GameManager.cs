@@ -74,7 +74,8 @@ public class GameManager : MonoBehaviour
         if(towerID != -1 &&
             !map[x, y].HasTower() &&
             towers[towerID].cost <= money &&
-            enemiesCount[x, y] <= 0)
+            enemiesCount[x, y] <= 0 &&
+            IsNotBlockingEnemies(x, y))
         {
             map[x, y].AddTower(towers[towerID]);
             money -= towers[towerID].cost;
@@ -94,5 +95,19 @@ public class GameManager : MonoBehaviour
     {
         this.money += money;
         UpdateUI();
+    }
+
+    private bool IsNotBlockingEnemies(int x, int y)
+    {/*
+        bool[,] tempArray = (bool[,])towersMap.Clone();
+        tempArray[]
+        for(int y = 0; y < ySize;y++)
+        {
+            for(int x =0; x < xSize; x++)
+            {
+                temp
+            }
+        }*/
+        return true;
     }
 }

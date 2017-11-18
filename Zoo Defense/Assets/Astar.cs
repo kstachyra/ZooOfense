@@ -213,7 +213,6 @@ public static class Astar
         return path;
     }
 
-
     //heurtstyczna odległość
     private static float H(Node from, Node to)
     {
