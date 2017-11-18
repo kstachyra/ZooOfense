@@ -34,7 +34,13 @@ public class Tile : MonoBehaviour
         GameObject go = Instantiate(tower, transform).gameObject;
         go.transform.localScale = Vector3.one;
         go.transform.localPosition = new Vector3(0, 0, -1);
-        go.GetComponent<Tower>().InitTower();
+        go.GetComponent<Tower>().InitTower(x, y);
+        GameManager.instance.towersMap[tower.tileX, tower.tileY] = false;
+        //Recalculate Paths
     }
 
+    public void RemoveTower()
+    {
+        tower = null;
+    }
 }

@@ -9,6 +9,7 @@ public class Tower : MonoBehaviour
     public float range;
     public int cost;
     public Sprite icon;
+    public int tileX, tileY;
 
     private EnemyFinder enemyFinder;
     private List<Enemy> enemiesInSight;
@@ -52,9 +53,11 @@ public class Tower : MonoBehaviour
         }
     }
 
-    public void InitTower()
+    public void InitTower(int x, int y)
     {
         Debug.Log("Tower Created!");
+        tileX = x;
+        tileY = y;
         enemyFinder.SetRadius(range);
 
         StartCoroutine(WaitAndAttack());
@@ -68,6 +71,7 @@ public class Tower : MonoBehaviour
 
     public void DestroyTower()
     {
+        GameManager.instance.RemoveTower(this);
         Destroy(gameObject);
     }
 

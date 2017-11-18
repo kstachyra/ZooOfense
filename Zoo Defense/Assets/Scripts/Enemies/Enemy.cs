@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class Enemy : MonoBehaviour
 {
-    public float speed; // 
+    public float speed;
     public float life;
     public int moneyDrop;
 
@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     }
 
     private void Start()
-    {
+    {//temp test
         Queue<Vector2> stack = new Queue<Vector2>();
         stack.Enqueue(new Vector2(7, 8));
         stack.Enqueue(new Vector2(6, 8));
@@ -38,6 +38,8 @@ public class Enemy : MonoBehaviour
 
     private void MoveTo(Vector2 point)
     {
+        GameManager.instance.enemiesCount[(int)point.x, (int)point.y]++;
+
         transform.DOMove(point, 1 / speed).SetEase(Ease.Linear).OnComplete(() =>
               {
                   if(wayPoints.Count == 0)
@@ -46,6 +48,7 @@ public class Enemy : MonoBehaviour
                   }
                   else
                   {
+                      GameManager.instance.enemiesCount[(int)point.x, (int)point.y]--;
                       MoveTo(wayPoints.Dequeue());
                   }
               });

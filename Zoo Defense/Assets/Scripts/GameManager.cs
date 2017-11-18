@@ -11,12 +11,17 @@ public class GameManager : MonoBehaviour
     public Tower[] towers;
     public GameObject tilePrefab;
     public int xSize, ySize;
+    public bool[,] towersMap;
+    public int[,] enemiesCount;
     Tile[,] map;
 
     void Awake()
     {
         instance = this;
         map = new Tile[ySize, xSize];
+        towersMap = new bool[ySize, xSize];
+        enemiesCount = new int[ySize, xSize];
+
         GenerateMap(ySize, xSize);
         Camera.main.transform.position = new Vector3((ySize - 3) / 2f, (xSize - 1) / 2f, -1);
     }
@@ -55,12 +60,20 @@ public class GameManager : MonoBehaviour
         int towerID = UIManager.selectedTower;
         if(towerID != -1 &&
             !map[x, y].HasTower() &&
-            towers[towerID].cost <= money)
+            towers[towerID].cost <= money &&
+            enemiesCount[x, y] <= 0)
         {
             map[x, y].AddTower(towers[towerID]);
             money -= towers[towerID].cost;
             UpdateUI();
         }
+    }
+
+    public void RemoveTower(Tower tower)
+    {
+        map[tower.tileX, tower.tileY].RemoveTower();
+        map[tower.tileX, tower.tileY] = null;
+        towersMap[tower.tileX, tower.tileY] = true;
     }
 
     public void AddMoney(int money)
