@@ -45,8 +45,7 @@ public class Tower : MonoBehaviour
 
     public virtual void Attack()
     {
-        Debug.Log("baseAttack");
-        while(enemiesInSight.Count > 0 && enemiesInSight[0] == null)
+        while(enemiesInSight.Count > 0 && enemiesInSight[0] == null && !enemiesInSight[0].IsDead())
         {
             enemiesInSight.RemoveAt(0);
         }
