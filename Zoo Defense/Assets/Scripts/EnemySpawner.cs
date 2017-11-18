@@ -87,8 +87,18 @@ public class EnemySpawner : MonoBehaviour
     private IEnumerator SpawnEnemy(int enemyType)
     {
         yield return new WaitForSeconds(UnityEngine.Random.Range(0, timeFrame));
+
         Debug.Log("Spawned: enemy " + enemyType);
-        Instantiate(Enemy);
+        Enemy newEnemy = (Enemy)Instantiate(Enemy);
+
+        Node enemyPosition = new Node(5, 5);
+        newEnemy.transform.position = new Vector3(enemyPosition.X, enemyPosition.Y, transform.position.z);
+
+
+        newEnemy.CalculatePath(enemyPosition, GameManager.destination);
+
+
+
         yield break;
     }
 
