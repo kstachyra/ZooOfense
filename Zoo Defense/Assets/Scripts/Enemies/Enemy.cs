@@ -18,8 +18,6 @@ public class Enemy : MonoBehaviour
     public void Start()
     {//temp test
         GameManager.onMapChange += OnRecalculatePath;
-        transform.position = new Vector3(10, 5, transform.position.z);
-        CalculatePath(new Node(10, 5), GameManager.destination);
     }
 
     private void SetPath(Queue<Node> wayPoints)
