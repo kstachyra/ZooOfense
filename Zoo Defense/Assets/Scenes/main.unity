@@ -216,7 +216,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da45ee5123180a4396d4034560dac34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 1554900125980932, guid: feb8816bc6a304241908dad56ce75c38, type: 2}
+  Enemy1: {fileID: 0}
+  Enemy2: {fileID: 0}
+  Enemy3: {fileID: 0}
   wave:
     serializedVersion: 2
     m_Curve:
@@ -416,7 +418,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 217192207}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 399.9, y: 251.01993, z: 0}
+  m_LocalPosition: {x: 399.9, y: 177.21713, z: 0}
   m_LocalScale: {x: 1.0000004, y: 1.0000004, z: 1.0000004}
   m_Children: []
   m_Father: {fileID: 1354514195}
@@ -2961,7 +2963,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1111605879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -395, y: 251.02002, z: 0}
+  m_LocalPosition: {x: -395, y: 177.21722, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1354514195}
@@ -3378,8 +3380,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1354514191}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 389.5, y: 219, z: 0}
-  m_LocalScale: {x: 0.7212963, y: 0.7212963, z: 0.7212963}
+  m_LocalPosition: {x: 383, y: 163, z: 0}
+  m_LocalScale: {x: 0.7092593, y: 0.7092593, z: 0.7092593}
   m_Children:
   - {fileID: 1111605880}
   - {fileID: 217192208}
@@ -3585,6 +3587,7 @@ GameObject:
   - component: {fileID: 1717899519}
   - component: {fileID: 1717899518}
   - component: {fileID: 1717899517}
+  - component: {fileID: 1717899521}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3657,6 +3660,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1717899521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1717899516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 401ad36c5ad56214692d03fca7b9f079, type: 2}
 --- !u!1001 &1815047909
 Prefab:
   m_ObjectHideFlags: 0
