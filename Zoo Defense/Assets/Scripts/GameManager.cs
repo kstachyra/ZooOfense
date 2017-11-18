@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public static Node destination;
 
     public int money = 3000;
-
+    public EnemySpawner spawner;
     public Tower[] towers;
     public GameObject tilePrefab;
     public int xSize, ySize;
@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
             UIManager.instance.SetTower(i, towers[i].cost, towers[i].icon);
         }
         UpdateUI();
+        spawner.StartNewLevel();
     }
 
     public static void RecalculatePaths()
