@@ -189,7 +189,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 02546346491fb9c42a9fdc19989121aa, type: 3}
   tileX: 0
   tileY: 0
-  nutPrefab: {fileID: 1672920614022794, guid: 7445e6b7346e53741909cbe3d102503e, type: 2}
+  nutPrefab: {fileID: 1672920614022794, guid: 3ebf734d71832cb488ac0bbdad37fb7b, type: 2}
 --- !u!212 &212832589994191096
 SpriteRenderer:
   m_ObjectHideFlags: 1
