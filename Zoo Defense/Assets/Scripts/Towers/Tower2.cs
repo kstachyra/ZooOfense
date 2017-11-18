@@ -5,15 +5,18 @@ using UnityEngine;
 public class Tower2 : Tower
 {
 
-    // Use this for initialization
-    void Start()
+    public override void Attack()
     {
-
+        base.Attack();
+        GetComponent<Animator>().SetTrigger("Bite");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-
+        if(focusedEnemy != null)
+        {
+            var dir = (focusedEnemy.transform.position - transform.position).normalized;
+            transform.localScale = new Vector3(dir.x >= 0 ? 1 : -1, 1, 1);
+        }
     }
 }
