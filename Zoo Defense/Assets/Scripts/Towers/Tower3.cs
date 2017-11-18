@@ -22,7 +22,8 @@ public class Tower3 : Tower
         if(focusedEnemy != null)
         {
             float distance = Vector3.Distance(transform.position, focusedEnemy.transform.position);
-            kula.transform.DOMove(focusedEnemy.transform.position + new Vector3(0, -0.2f, -0.5f), 0.01f * distance).SetEase(Ease.InSine).OnComplete(() =>
+            kula.GetComponent<Rigidbody2D>().AddTorque(1000, ForceMode2D.Force);
+            kula.transform.DOMove(focusedEnemy.transform.position + new Vector3(0, -0.2f, -0.5f), 0.03f * distance).SetEase(Ease.InSine).OnComplete(() =>
             {
                 kula.transform.DOScale(Vector3.zero, 0.05f).OnComplete(() =>
                 {
