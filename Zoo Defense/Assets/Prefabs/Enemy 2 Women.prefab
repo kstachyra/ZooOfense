@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 114071271456368290}
   - component: {fileID: 58296113920960400}
   - component: {fileID: 50756127689808486}
-  - component: {fileID: 95299534302537746}
+  - component: {fileID: 95935047045170738}
   m_Layer: 0
   m_Name: Enemy 2 Women
   m_TagString: Enemy
@@ -146,7 +146,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.46
---- !u!95 &95299534302537746
+--- !u!95 &95935047045170738
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -155,7 +155,7 @@ Animator:
   m_GameObject: {fileID: 1554900125980932}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b0470ee8f62b2004886bc1591229aa85, type: 2}
+  m_Controller: {fileID: 9100000, guid: 28d1d287fab69d34a972e9d89caffb57, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
