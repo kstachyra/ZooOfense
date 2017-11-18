@@ -22,9 +22,12 @@ public class Enemy : MonoBehaviour
         Queue<Vector2> stack = new Queue<Vector2>();
         stack.Enqueue(new Vector2(3, 4));
         stack.Enqueue(new Vector2(3, 3));
-        stack.Enqueue(new Vector2(2, 3));
-        stack.Enqueue(new Vector2(1, 3));
-        stack.Enqueue(new Vector2(0, 3));
+        stack.Enqueue(new Vector2(3, 2));
+        stack.Enqueue(new Vector2(3, 1));
+        stack.Enqueue(new Vector2(3, 0));
+        stack.Enqueue(new Vector2(2, 0));
+        stack.Enqueue(new Vector2(1, 0));
+        stack.Enqueue(new Vector2(0, 0));
 
         SetPath(stack);
     }
