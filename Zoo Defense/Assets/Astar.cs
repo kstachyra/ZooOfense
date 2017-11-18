@@ -207,7 +207,6 @@ public static class Astar
         while (curr !=null)
         {
             path.Add(curr);
-            Debug.Log("AAA" + curr.X + "." + curr.Y);
             curr = CameFrom[curr.X, curr.Y];
         }
 
