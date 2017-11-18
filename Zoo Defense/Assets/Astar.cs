@@ -1,6 +1,7 @@
-﻿using System;
+﻿using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
+using System;
 
 public class Node
 {
@@ -126,9 +127,14 @@ public static class Astar
                     best = node;
                     first = false;
                 }
+
                 if(fScore[node.X, node.Y] < fScore[best.X, best.Y])
                 {
                     best = node;
+                }
+                else if (fScore[node.X, node.Y] == fScore[best.X, best.Y] && ((UnityEngine.Random.Range(0.0f, 1.0f) > 0.5)))
+                {
+                        best = node;
                 }
             }
 
@@ -141,15 +147,18 @@ public static class Astar
             OpenSet.Remove(best);
             ClosedSet.Add(best);
 
-            HashSet<Node> neighbours = new HashSet<Node>();
+            List<Node> neighbours = new List<Node>
+            {
+                new Node(best.X - 1, best.Y),
+                new Node(best.X + 1, best.Y),
+                new Node(best.X, best.Y - 1),
+                new Node(best.X, best.Y + 1)
+            };
 
-            neighbours.Add(new Node(best.X - 1, best.Y));
-            neighbours.Add(new Node(best.X + 1, best.Y));
-            neighbours.Add(new Node(best.X, best.Y - 1));
-            neighbours.Add(new Node(best.X, best.Y + 1));
+            var rnd = new System.Random();
+            var result = neighbours.OrderBy(item => rnd.Next());
 
-
-            foreach(Node node in neighbours)
+            foreach (Node node in neighbours)
             {
                 if(node.X >= 0 && node.X < columns && node.Y >= 0 && node.Y < rows)
                 {
