@@ -11,9 +11,9 @@ public class Tower : MonoBehaviour
     public Sprite icon;
     public int tileX, tileY;
 
-    private EnemyFinder enemyFinder;
-    private List<Enemy> enemiesInSight;
-    private bool hasEnemiesInSight = false;
+    protected EnemyFinder enemyFinder;
+    protected List<Enemy> enemiesInSight;
+    protected bool hasEnemiesInSight = false;
 
     public void Awake()
     {
