@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System.Linq;
 
 public class Enemy : MonoBehaviour
 {
@@ -9,39 +10,37 @@ public class Enemy : MonoBehaviour
     public float life;
     public int moneyDrop;
 
-    private Tile destination;
-    private Queue<Vector2> wayPoints;
+    private Node destination;
+    private Queue<Node> wayPoints;
+    private bool pathChanged = false;
 
-    public void SetDestination(Tile tile)
+    public void SetDestination(Node destination)
     {
-        destination = tile;
+        this.destination = destination;
     }
 
     public void Start()
     {//temp test
-        Queue<Vector2> stack = new Queue<Vector2>();
-        stack.Enqueue(new Vector2(3, 4));
-        stack.Enqueue(new Vector2(3, 3));
-        stack.Enqueue(new Vector2(2, 3));
-        stack.Enqueue(new Vector2(1, 3));
-        stack.Enqueue(new Vector2(0, 3));
-
-        SetPath(stack);
+        GameManager.onMapChange += OnRecalculatePath;
+        transform.position = new Vector3(10, 5, transform.position.z);
+        SetDestination(new Node(0, 3));
+        CalculatePath(new Node(10, 5), destination);
     }
 
-    public void SetPath(Queue<Vector2> wayPoints)
+    private void SetPath(Queue<Node> wayPoints)
     {
         this.wayPoints = wayPoints;
+        wayPoints.Dequeue();
         MoveTo(this.wayPoints.Dequeue());
     }
 
-    private void MoveTo(Vector2 point)
+    private void MoveTo(Node targetPosition)
     {
-        GameManager.instance.enemiesCount[(int)point.x, (int)point.y]++;
+        GameManager.instance.enemiesCount[targetPosition.X, targetPosition.Y]++;
 
-        transform.localScale = new Vector3(point.x - transform.localPosition.x > 0 ? 1 : -1, 1, 1);
+        transform.localScale = new Vector3(targetPosition.X - transform.localPosition.x > 0 ? 1 : -1, 1, 1);
 
-        transform.DOMove(point, 1 / speed).SetEase(Ease.Linear).OnComplete(() =>
+        transform.DOMove(new Vector3(targetPosition.X, targetPosition.Y, transform.position.z), 1 / speed).SetEase(Ease.Linear).OnComplete(() =>
               {
                   if(wayPoints.Count == 0)
                   {
@@ -49,10 +48,21 @@ public class Enemy : MonoBehaviour
                   }
                   else
                   {
-                      GameManager.instance.enemiesCount[(int)point.x, (int)point.y]--;
-                      MoveTo(wayPoints.Dequeue());
+                      GameManager.instance.enemiesCount[targetPosition.X, targetPosition.Y]--;
+                      if(!pathChanged)
+                          MoveTo(wayPoints.Dequeue());
+                      else
+                      {
+                          CalculatePath(targetPosition, destination);
+                          pathChanged = false;
+                      }
                   }
               });
+    }
+
+    public void CalculatePath(Node from, Node to)
+    {
+        SetPath(new Queue<Node>(Astar.CalcPath(from, to).AsEnumerable().Reverse()));
     }
 
     public void DealDamage(float damage)
@@ -73,7 +83,11 @@ public class Enemy : MonoBehaviour
 
     private void HurtPlayer()
     {
-
         Destroy(gameObject);
+    }
+
+    void OnRecalculatePath()
+    {
+        pathChanged = true;
     }
 }

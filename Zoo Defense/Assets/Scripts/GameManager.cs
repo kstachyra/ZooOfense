@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public static event Action onMapChange;
 
     public int money = 3000;
 
@@ -17,10 +19,12 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        Astar.Init(ySize, xSize);
         instance = this;
         map = new Tile[ySize, xSize];
         towersMap = new bool[ySize, xSize];
         enemiesCount = new int[ySize, xSize];
+        Astar.SetGrid(towersMap);
 
         GenerateMap(ySize, xSize);
         Camera.main.transform.position = new Vector3((ySize - 3) / 2f, (xSize - 1) / 2f, -1);
@@ -33,6 +37,15 @@ public class GameManager : MonoBehaviour
             UIManager.instance.SetTower(i, towers[i].cost, towers[i].icon);
         }
         UpdateUI();
+    }
+
+    public static void RecalculatePaths()
+    {
+        Astar.SetGrid(GameManager.instance.towersMap);
+        if(onMapChange != null)
+        {
+            onMapChange();
+        }
     }
 
     void GenerateMap(int x, int y)
@@ -73,7 +86,8 @@ public class GameManager : MonoBehaviour
     {
         map[tower.tileX, tower.tileY].RemoveTower();
         map[tower.tileX, tower.tileY] = null;
-        towersMap[tower.tileX, tower.tileY] = true;
+        towersMap[tower.tileX, tower.tileY] = false;
+        RecalculatePaths();
     }
 
     public void AddMoney(int money)

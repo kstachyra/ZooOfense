@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114071271456368290}
   - component: {fileID: 58296113920960400}
   - component: {fileID: 50756127689808486}
-  - component: {fileID: 95461311325110606}
+  - component: {fileID: 95405692165725352}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -79,7 +79,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.46
---- !u!95 &95461311325110606
+--- !u!95 &95405692165725352
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -88,7 +88,7 @@ Animator:
   m_GameObject: {fileID: 1554900125980932}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 71ef707579888f5489ef860600017ddd, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7fee18a3a50a6ae48a0f015cc418df5f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf1eff8de323dc4eb9fcaedb8957f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.5
   life: 54
   moneyDrop: 23
 --- !u!212 &212706357367235536

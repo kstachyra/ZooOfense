@@ -3,46 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Node
+{
+    public Node()
     {
-        public Node()
+        this.X = -1;
+        this.Y = -1;
+    }
+
+    public Node(int x, int y)
+    {
+        this.X = x;
+        this.Y = y;
+    }
+
+    public override bool Equals(object other)
+    {
+        if(other == null)
         {
-            this.X = -1;
-            this.Y = -1;
+            return false;
         }
 
-        public Node(int x, int y)
+        var obj = other as Node;
+
+        if(this.X == obj.X && this.Y == obj.Y)
         {
-            this.X = x;
-            this.Y = y;
+            return true;
         }
-
-        public override bool Equals(object other)
+        else
         {
-            if (other == null)
-            {
-                return false;
-            }
-
-            var obj = other as Node;
-
-            if (this.X == obj.X && this.Y == obj.Y)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return false;
         }
+    }
 
-        public override int GetHashCode()
-        {
-            return this.X * 1000 + this.Y;
-        }
+    public override int GetHashCode()
+    {
+        return this.X * 1000 + this.Y;
+    }
 
-        public int X { get; set; }
-        public int Y { get; set; }
-    };
+    public int X { get; set; }
+    public int Y { get; set; }
+};
 
 public static class Astar
 {
@@ -67,7 +67,7 @@ public static class Astar
     static float[,] fScore;
 
 
-    public static void Init (int width, int height)
+    public static void Init(int width, int height)
     {
         columns = width;
         rows = height;
@@ -77,7 +77,7 @@ public static class Astar
         fScore = new float[columns, rows];
         gScore = new float[columns, rows];
         CameFrom = new Node[columns, rows];
-   	}
+    }
 
     public static void SetGrid(bool[,] TowerGrid)
     {
@@ -93,14 +93,14 @@ public static class Astar
 
         OpenSet.Add(new Node(start.X, start.Y));
 
-        for (int i = 0; i < columns; ++i)
+        for(int i = 0; i < columns; ++i)
         {
-            for (int j = 0; j < rows; ++j)
+            for(int j = 0; j < rows; ++j)
             {
                 gScore[i, j] = float.MaxValue;
                 fScore[i, j] = float.MaxValue;
 
-                if (Grid[i, j] == true) ClosedSet.Add(new Node(i, j));
+                if(Grid[i, j] == true) ClosedSet.Add(new Node(i, j));
             }
         }
 
@@ -116,24 +116,24 @@ public static class Astar
 
 
         Node best = new Node();
-        while (OpenSet.Count > 0)
+        while(OpenSet.Count > 0)
         {
             bool first = true;
-            foreach (Node node in OpenSet)
+            foreach(Node node in OpenSet)
             {
-                if (first)
+                if(first)
                 {
                     best = node;
                     first = false;
                 }
-                if (fScore[node.X, node.Y] < fScore[best.X, best.Y])
+                if(fScore[node.X, node.Y] < fScore[best.X, best.Y])
                 {
                     best = node;
                 }
             }
 
 
-            if (best.Equals(end))
+            if(best.Equals(end))
             {
                 return GetPath(start, end);
             }
@@ -145,18 +145,18 @@ public static class Astar
 
             neighbours.Add(new Node(best.X - 1, best.Y));
             neighbours.Add(new Node(best.X + 1, best.Y));
-            neighbours.Add(new Node(best.X, best.Y -1));
-            neighbours.Add(new Node(best.X, best.Y +1));
+            neighbours.Add(new Node(best.X, best.Y - 1));
+            neighbours.Add(new Node(best.X, best.Y + 1));
 
 
-            foreach (Node node in neighbours)
+            foreach(Node node in neighbours)
             {
-                if (node.X >= 0 && node.X < columns && node.Y >= 0 && node.Y < rows)
+                if(node.X >= 0 && node.X < columns && node.Y >= 0 && node.Y < rows)
                 {
-                    if (!ClosedSet.Contains(node))
+                    if(!ClosedSet.Contains(node))
                     {
 
-                        if (!OpenSet.Contains(node))
+                        if(!OpenSet.Contains(node))
                         {
                             OpenSet.Add(node);
                         }
@@ -164,7 +164,7 @@ public static class Astar
                         float newPath = gScore[best.X, best.Y] + 1;
 
                         //lepsza ścieżka
-                        if (newPath < gScore[node.X, node.Y])
+                        if(newPath < gScore[node.X, node.Y])
                         {
                             CameFrom[node.X, node.Y] = best;
 
@@ -174,12 +174,12 @@ public static class Astar
                     }
 
                 }
-            }         
+            }
 
         }
 
         //nie ma ścieżki
-        return new List<Node>(); 
+        return new List<Node>();
     }
 
 
@@ -188,9 +188,9 @@ public static class Astar
         OpenSet.Clear();
         ClosedSet.Clear();
 
-        for (int i=0; i<columns; ++i)
+        for(int i = 0; i < columns; ++i)
         {
-            for (int j=0; j<rows; ++j)
+            for(int j = 0; j < rows; ++j)
             {
                 CameFrom[i, j] = null;
             }
@@ -204,17 +204,16 @@ public static class Astar
 
         Node curr = e;
 
-        while (curr !=null)
+        while(curr != null)
         {
             path.Add(curr);
-            Debug.Log("AAA" + curr.X + "." + curr.Y);
             curr = CameFrom[curr.X, curr.Y];
         }
 
         return path;
     }
 
-    
+
     //heurtstyczna odległość
     private static float H(Node from, Node to)
     {

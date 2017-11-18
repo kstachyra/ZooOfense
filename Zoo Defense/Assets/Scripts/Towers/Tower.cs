@@ -14,6 +14,7 @@ public class Tower : MonoBehaviour
     protected EnemyFinder enemyFinder;
     protected List<Enemy> enemiesInSight;
     protected bool hasEnemiesInSight = false;
+    protected Enemy focusedEnemy;
 
     public void Awake()
     {
@@ -35,21 +36,29 @@ public class Tower : MonoBehaviour
             }
             Debug.Log("atack!");
 
-            while(enemiesInSight.Count > 0 && enemiesInSight[0] == null)
-            {
-                enemiesInSight.RemoveAt(0);
-            }
-
-            if(enemiesInSight.Count > 0)
-            {
-                enemiesInSight[0].DealDamage(attackPower);
-            }
-            else
-            {
-                hasEnemiesInSight = false;
-            }
+            Attack();
 
             yield return new WaitForSeconds(speedFrequency);
+        }
+    }
+
+    public virtual void Attack()
+    {
+        Debug.Log("baseAttack");
+        while(enemiesInSight.Count > 0 && enemiesInSight[0] == null)
+        {
+            enemiesInSight.RemoveAt(0);
+        }
+
+        if(enemiesInSight.Count > 0)
+        {
+            focusedEnemy = enemiesInSight[0];
+            enemiesInSight[0].DealDamage(attackPower);
+        }
+        else
+        {
+            hasEnemiesInSight = false;
+            focusedEnemy = null;
         }
     }
 
