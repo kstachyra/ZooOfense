@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public static event Action onMapChange;
+
     public static Node destination;
 
     public int money = 3000;
@@ -66,6 +67,7 @@ public class GameManager : MonoBehaviour
                 go.name = "Tile (" + i + ", " + j + ")";
                 map[i, j] = go.GetComponent<Tile>();
                 map[i, j].Init(i, j, onTileClick);
+
             }
         }
     }

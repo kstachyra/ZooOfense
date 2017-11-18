@@ -11,6 +11,9 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     public static int selectedTower = -1;
 
+    public static event Action <bool> onTowerUIChange;
+
+
     public Transform sellCanvas;
     public Button sellButton;
     public Text levelText;
@@ -43,11 +46,21 @@ public class UIManager : MonoBehaviour
 
     public void DisableTowerClick()
     {
+        if (onTowerUIChange != null)
+        {
+            onTowerUIChange(false);
+        }
+
         toggleGroup.SetAllTogglesOff();
     }
 
     public void OnTowerClick(bool active)
     {
+        if (onTowerUIChange != null)
+        {
+            onTowerUIChange(active);
+        }
+
         if(active && toggleGroup.ActiveToggles().Count() > 0)
         {
             UIManager.instance.HideSellButton();

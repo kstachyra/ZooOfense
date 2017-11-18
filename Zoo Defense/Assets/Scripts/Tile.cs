@@ -11,6 +11,8 @@ public class Tile : MonoBehaviour
 
     public void Init(int x, int y, Action<int, int> onTileClick)
     {
+        UIManager.onTowerUIChange += onTowerUIChange;
+
         this.x = x;
         this.y = y;
         this.onTileClick = onTileClick;
@@ -39,10 +41,18 @@ public class Tile : MonoBehaviour
         GameManager.instance.towersMap[tempTower.tileX, tempTower.tileY] = true;
         GameManager.RecalculatePaths();
         //Recalculate Paths
+
+        this.tower = tower;
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 
     public void RemoveTower()
     {
         tower = null;
+    }
+
+    public void onTowerUIChange(bool status)
+    {
+        GetComponent<SpriteRenderer>().enabled = status && !HasTower();
     }
 }
