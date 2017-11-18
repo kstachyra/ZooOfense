@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -6,6 +8,8 @@ public class EnemySpawner : MonoBehaviour
     public GameObject Enemy1;
     public GameObject Enemy2;
     public GameObject Enemy3;
+
+    public GameObject finalWaveText;
 
     public AnimationCurve wave;
     public int roundTime;
@@ -20,9 +24,11 @@ public class EnemySpawner : MonoBehaviour
 
     int level = 1;
 
+
+    private List<Enemy> enemiesList = new List<Enemy>();
+
     public void StartNewLevel()
     {
-        //TODO
         toSpawn = enemies;
         spawned = 0;
 
@@ -35,19 +41,87 @@ public class EnemySpawner : MonoBehaviour
 
     public void EndLevel()
     {
-        //TODO
-        level += 1;
+        StartCoroutine("FinalWave");
+    }
 
+    private IEnumerator FinalWave()
+    {
+        //nie ma juz wrogow
+        while (true)
+        {
+            yield return new WaitForSeconds(5);
+            if (CheckIfMapEmpty())
+            {
+
+                break;
+            }
+        }
+
+
+        //final wave!!!
+        Debug.Log("Fianl Wave!");
+
+        StartCoroutine("PrintFinalWave");
+
+        int howMany = enemies * (level);
+        howMany++;
+        for (int i = 0; i < howMany; ++i)
+        {
+            int enemyType = 0;
+
+            //upgrade enemy
+            for (int e = 0; e < enemyTypes - 1; ++e)
+            {
+                if (UnityEngine.Random.Range(0.0f, 2f) < 1.0f)
+                {
+                    enemyType++;
+                }
+            }
+            yield return new WaitForSeconds(0.3f);
+            StartCoroutine("SpawnEnemy", enemyType);
+        }
+
+
+        //nie ma juz wrogow
+        while (true)
+        {
+            yield return new WaitForSeconds(10);
+            if (CheckIfMapEmpty())
+            {
+                break;
+            }
+        }
+        Debug.Log("DAY ENDED!");
+
+        level += 1;
         UpdateUI();
 
         StartNewLevel();
     }
 
-    private void Start()
+    private IEnumerator PrintFinalWave()
     {
-        //!!! TODO
-        level = 1;
-        StartNewLevel();
+        finalWaveText.SetActive(true);
+
+        yield return new WaitForSeconds(3);
+
+        finalWaveText.SetActive(false);
+
+        yield break;
+    }
+
+    private bool CheckIfMapEmpty()
+    {
+        foreach (Enemy e in enemiesList)
+        {
+            if (e != null) return false;
+        }
+
+        Debug.Log("Map EMPTY!");
+
+        enemiesList.Clear();
+
+        return true;
     }
 
     private IEnumerator SpawnEnemies()
@@ -90,8 +164,6 @@ public class EnemySpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(UnityEngine.Random.Range(0, timeFrame));
 
-        Debug.Log("Spawned: enemy " + enemyType);
-
         Enemy newEnemy;
         switch (enemyType)
         {
@@ -114,11 +186,13 @@ public class EnemySpawner : MonoBehaviour
         //w pionie
         int y = GameManager.instance.xSize;
 
-        y = Random.Range(0, y);
+        y = UnityEngine.Random.Range(0, y);
         Node enemyPosition = new Node(x-1, y);
 
         newEnemy.transform.position = new Vector3(enemyPosition.X, enemyPosition.Y, transform.position.z);
         newEnemy.CalculatePath(enemyPosition, GameManager.destination);
+
+        enemiesList.Add((Enemy)newEnemy);
 
         yield break;
     }
