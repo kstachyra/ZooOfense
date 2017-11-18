@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 9cffb3263df932c4ca1638bfa9198a8b
+timeCreated: 1511036422
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Oh Whale
+  fontNames:
+  - Oh Whale
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 201c4433fd895604781986c5cc4362bf, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

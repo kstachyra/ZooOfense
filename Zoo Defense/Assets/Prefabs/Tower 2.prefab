@@ -182,10 +182,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 613e4644e9ef16545b967dd6829f8b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPower: 10
-  speedFrequency: 0.5
-  range: 3
-  cost: 35
+  attackPower: 20
+  speedFrequency: 1.2
+  range: 1
+  cost: 70
   icon: {fileID: 21300000, guid: a357332a5a069fa41bd47885e97b8018, type: 3}
   tileX: 0
   tileY: 0

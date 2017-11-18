@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 222649436825175222}
   - component: {fileID: 114395670219985454}
   - component: {fileID: 114800390103196146}
+  - component: {fileID: 225739154510515060}
   m_Layer: 0
   m_Name: MoneyTest
   m_TagString: Untagged
@@ -174,10 +175,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf1eff8de323dc4eb9fcaedb8957f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
-  life: 54
-  moneyDrop: 23
+  speed: 0.7
+  life: 35
+  moneyDrop: 12
   cage: {fileID: 1473682396028090}
+  moneyTextRect: {fileID: 224078887059176932}
+  moneyText: {fileID: 114395670219985454}
+  moneyTextFade: {fileID: 225739154510515060}
 --- !u!114 &114395670219985454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -402,7 +406,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1759556878608702}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 47.47, z: 0}
+  m_LocalPosition: {x: 0, y: 49.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224041156525749540}
@@ -410,6 +414,17 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 47.47}
+  m_AnchoredPosition: {x: 0, y: 49.6}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &225739154510515060
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1759556878608702}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
