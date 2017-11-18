@@ -1,10 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Tower1 : Tower
 {
     public Transform hand;
+
+    public override void Attack()
+    {
+        base.Attack();
+
+    }
 
     public void Update()
     {
