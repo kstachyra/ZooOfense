@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public static event Action onMapChange;
+    public static Node destination;
 
     public int money = 3000;
 
@@ -19,11 +20,16 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        destination = new Node(0, 3);
         Astar.Init(ySize, xSize);
         instance = this;
         map = new Tile[ySize, xSize];
         towersMap = new bool[ySize, xSize];
         enemiesCount = new int[ySize, xSize];
+        for(int i = 0; i < xSize; i++)
+        {
+            enemiesCount[ySize - 1, i] = 1;
+        }
         Astar.SetGrid(towersMap);
 
         GenerateMap(ySize, xSize);
@@ -97,17 +103,27 @@ public class GameManager : MonoBehaviour
         UpdateUI();
     }
 
-    private bool IsNotBlockingEnemies(int x, int y)
-    {/*
-        bool[,] tempArray = (bool[,])towersMap.Clone();
-        tempArray[]
-        for(int y = 0; y < ySize;y++)
+    private bool IsNotBlockingEnemies(int X, int Y)
+    {
+        towersMap[X, Y] = true;
+        Astar.SetGrid(towersMap);
+
+        for(int y = 0; y < ySize; y++)
         {
-            for(int x =0; x < xSize; x++)
+            for(int x = 0; x < xSize; x++)
             {
-                temp
+                if(enemiesCount[y, x] > 0)
+                {
+                    if(Astar.CalcPath(new Node(y, x), destination).Count == 0)
+                    {
+                        towersMap[X, Y] = false;
+                        return false;
+                    }
+                }
             }
-        }*/
+        }
+
+        towersMap[X, Y] = false;
         return true;
     }
 }

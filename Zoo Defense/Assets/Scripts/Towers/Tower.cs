@@ -31,6 +31,7 @@ public class Tower : MonoBehaviour
         {
             if(!hasEnemiesInSight)
             {
+                focusedEnemy = null;
                 yield return null;
                 continue;
             }

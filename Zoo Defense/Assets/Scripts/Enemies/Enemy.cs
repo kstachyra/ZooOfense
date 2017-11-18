@@ -9,22 +9,16 @@ public class Enemy : MonoBehaviour
     public float speed;
     public float life;
     public int moneyDrop;
+    public GameObject cage;
 
-    private Node destination;
     private Queue<Node> wayPoints;
     private bool pathChanged = false;
-
-    public void SetDestination(Node destination)
-    {
-        this.destination = destination;
-    }
 
     public void Start()
     {//temp test
         GameManager.onMapChange += OnRecalculatePath;
         transform.position = new Vector3(10, 5, transform.position.z);
-        SetDestination(new Node(0, 3));
-        CalculatePath(new Node(10, 5), destination);
+        CalculatePath(new Node(10, 5), GameManager.destination);
     }
 
     private void SetPath(Queue<Node> wayPoints)
@@ -53,7 +47,7 @@ public class Enemy : MonoBehaviour
                           MoveTo(wayPoints.Dequeue());
                       else
                       {
-                          CalculatePath(targetPosition, destination);
+                          CalculatePath(targetPosition, GameManager.destination);
                           pathChanged = false;
                       }
                   }
@@ -79,6 +73,12 @@ public class Enemy : MonoBehaviour
     {
         GameManager.instance.AddMoney(moneyDrop);
         Destroy(gameObject);
+    }
+
+    private void PlayDeathAnimation()
+    {
+        cage.SetActive(true);
+        transform.DOScale(Vector3.zero, 0.3f).OnComplete(() => Destroy(gameObject));
     }
 
     private void HurtPlayer()
