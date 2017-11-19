@@ -7,8 +7,17 @@ public class Menu : MonoBehaviour
 {
     public GameObject menuScreen;
 
-    public void OnStartScreenClick()
+    private void Start()
     {
+        if (PlayerPrefs.HasKey("back") && PlayerPrefs.GetInt("back") == 1)
+        {
+            PlayerPrefs.SetInt("back", 0);
+            menuScreen.SetActive(false);
+        }
+    }
+
+    public void OnStartScreenClick()
+    {  
         menuScreen.SetActive(false);
     }
 

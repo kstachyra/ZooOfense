@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static event Action onMapChange;
 
     public static Node destination;
+
 
     public int lifes = 10;
     public int captured = 0;
@@ -20,6 +21,9 @@ public class GameManager : MonoBehaviour
     public bool[,] towersMap;
     public int[,] enemiesCount;
     Tile[,] map;
+
+    public GameObject gameOverWindow;
+
 
     void Awake()
     {
@@ -116,7 +120,15 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        Destroy(spawner);
         Debug.Log("loser!");
+
+
+        //Okno przegranej i do wybory
+        gameOverWindow.SetActive(true);
+
+        //backToMenu();
+        //restart();
     }
 
     private bool IsNotBlockingEnemies(int X, int Y)
@@ -141,5 +153,18 @@ public class GameManager : MonoBehaviour
 
         towersMap[X, Y] = false;
         return true;
+    }
+
+    public void restart()
+    {
+        gameOverWindow.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void backToMenu()
+    {
+        gameOverWindow.SetActive(false);
+        SceneManager.LoadScene(1);
+        PlayerPrefs.SetInt("back", 1);
     }
 }
