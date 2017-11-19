@@ -7,6 +7,8 @@ public class Menu : MonoBehaviour
 {
     public GameObject menuScreen;
 
+    public GameObject upgradeScreen;
+
     private void Start()
     {
         if (PlayerPrefs.HasKey("back") && PlayerPrefs.GetInt("back") == 1)
@@ -28,7 +30,11 @@ public class Menu : MonoBehaviour
 
     public void UpgradeMenu()
     {
-        //TODO
-        SceneManager.LoadScene(0);
+        upgradeScreen.SetActive(true);
+    }
+
+    public void HideUpgradeMenu()
+    {
+        upgradeScreen.SetActive(false);
     }
 }
