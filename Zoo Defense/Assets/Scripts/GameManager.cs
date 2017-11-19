@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
                 map[i, j] = go.GetComponent<Tile>();
                 map[i, j].Init(i, j, onTileClick);
 
+                go.GetComponent<SpriteRenderer>().enabled = false;
             }
         }
     }
@@ -100,6 +101,12 @@ public class GameManager : MonoBehaviour
             map[x, y].AddTower(towers[towerID]);
             money -= towers[towerID].cost;
             UpdateUI();
+        }
+        else
+        {
+            //nie można wybudować wieży
+            //podświetl na czerwono
+            map[x, y].GetComponent<Animation>().Play();
         }
     }
 
