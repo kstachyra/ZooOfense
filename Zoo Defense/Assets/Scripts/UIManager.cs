@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public static int selectedTower = -1;
 
     public Button upgradeButton;
+    public Text upgradeCost;
     public static event Action<bool> onTowerUIChange;
 
     public Transform sellCanvas;
@@ -101,14 +102,16 @@ public class UIManager : MonoBehaviour
         sellCanvas.transform.position = new Vector3(position.x, position.y, -0.5f);
     }
 
-    public void SetUpgradeCanvas(bool noUpgrades, Action onClick, Vector2 position)
+    public void SetUpgradeCanvas(bool noUpgrades, Action onClick, Vector2 position, int cost)
     {
+        upgradeCost.text = cost == -1 ? "" : (cost + "$");
         if(noUpgrades)
         {
             upgradeButton.gameObject.SetActive(false);
         }
         else
         {
+            upgradeButton.gameObject.SetActive(true);
             upgradeButton.onClick.RemoveAllListeners();
             sellCanvas.gameObject.SetActive(true);
             upgradeButton.transform.localScale = Vector3.zero;
@@ -121,10 +124,12 @@ public class UIManager : MonoBehaviour
 
     public void HideSellButton()
     {
+        upgradeButton.transform.DOScale(0, 0.1f);
         sellButton.transform.DOScale(0, 0.1f).OnComplete(() =>
         {
             sellCanvas.gameObject.SetActive(false);
             sellButton.transform.localScale = Vector3.one;
+            upgradeButton.transform.localScale = Vector3.one;
         });
     }
 

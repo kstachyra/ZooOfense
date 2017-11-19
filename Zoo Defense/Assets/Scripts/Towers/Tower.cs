@@ -94,13 +94,13 @@ public class Tower : MonoBehaviour
         if(!EventSystem.current.IsPointerOverGameObject())
         {
             UIManager.instance.SetSellCanvas(DestroyTower, transform.position);
-            if(currentLevel < upgradeCost.Length && (upgradeCost[currentLevel] - GameManager.instance.money) <= 0)
+            if(currentLevel < upgradeCost.Length && (upgradeCost[currentLevel] <= GameManager.instance.money))
             {
-                UIManager.instance.SetUpgradeCanvas(currentLevel == upgradeCost.Length - 1, UpgradeTower, transform.position);
+                UIManager.instance.SetUpgradeCanvas(currentLevel >= upgradeCost.Length, UpgradeTower, transform.position, upgradeCost[currentLevel]);
             }
             else
             {
-                UIManager.instance.SetUpgradeCanvas(currentLevel == upgradeCost.Length - 1, null, transform.position);
+                UIManager.instance.SetUpgradeCanvas(currentLevel >= upgradeCost.Length, null, transform.position, -1);
             }
             UIManager.instance.DisableTowerClick();
         }
@@ -114,6 +114,8 @@ public class Tower : MonoBehaviour
             enemyFinder.SetRadius(range + (0.15f * currentLevel * range));
             currentLevel++;
             SetUpgrade();
+            UIManager.instance.DisableTowerClick();
+            UIManager.instance.HideSellButton();
         }
     }
 
