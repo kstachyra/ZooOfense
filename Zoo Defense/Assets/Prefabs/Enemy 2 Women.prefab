@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf1eff8de323dc4eb9fcaedb8957f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updatesCost: 
   speed: 1.3
   life: 14
   moneyDrop: 16

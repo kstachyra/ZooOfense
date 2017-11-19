@@ -6,10 +6,13 @@ using UnityEngine;
 public class Tower3 : Tower
 {
     public GameObject nutPrefab;
+    public GameObject particle_sys_squir;
 
     public override void Attack()
     {
         base.FocusEnemy();
+        GameObject particle = Instantiate(particle_sys_squir);
+        particle.transform.position = transform.position;
         GetComponent<Animator>().SetTrigger("Shoot");
         StartCoroutine(WaitAndSpawnNut());
     }
