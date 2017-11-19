@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Tower2 : Tower
 {
-
+    public GameObject particle_sys_lion;
     public override void Attack()
     {
         base.Attack();
         GetComponent<Animator>().SetTrigger("Bite");
+        GameObject particle = Instantiate(particle_sys_lion);
+        particle.transform.position = transform.position;
     }
 
     public void Update()

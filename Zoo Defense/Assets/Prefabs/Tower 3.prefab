@@ -182,6 +182,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e60781148b021ff47be81731da93e534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradeCost: 
+  currentLevel: 0
   attackPower: 2
   speedFrequency: 0.6
   range: 5
@@ -190,6 +192,8 @@ MonoBehaviour:
   tileX: 0
   tileY: 0
   nutPrefab: {fileID: 1672920614022794, guid: 3ebf734d71832cb488ac0bbdad37fb7b, type: 2}
+  particle_sys_squir: {fileID: 1268710298648346, guid: 74fd01361edeec84594c611a998ca7a3,
+    type: 2}
 --- !u!212 &212832589994191096
 SpriteRenderer:
   m_ObjectHideFlags: 1
