@@ -113,7 +113,13 @@ public class Tower : MonoBehaviour
             GameManager.instance.AddMoney(-upgradeCost[currentLevel]);
             enemyFinder.SetRadius(range + (0.15f * currentLevel * range));
             currentLevel++;
+            SetUpgrade();
         }
+    }
+
+    public virtual void SetUpgrade()
+    {
+
     }
 
     public void DestroyTower()
