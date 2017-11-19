@@ -10,6 +10,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject Enemy3;
 
     public GameObject finalWaveText;
+    public GameObject night;
 
     public AnimationCurve wave;
     public int roundTime;
@@ -85,13 +86,15 @@ public class EnemySpawner : MonoBehaviour
         //nie ma juz wrogow
         while (true)
         {
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(7);
             if (CheckIfMapEmpty())
             {
                 break;
             }
         }
         Debug.Log("DAY ENDED!");
+
+        night.GetComponent<Animation>().Play();
 
         level += 1;
         UpdateUI();
