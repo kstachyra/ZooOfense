@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public static event Action onMapChange;
-    public static event Action onMoneyChange;
+
     public static Node destination;
 
     public int money = 3000;
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         Astar.SetGrid(towersMap);
 
         GenerateMap(ySize, xSize);
-        Camera.main.transform.position = new Vector3((ySize - 3) / 2f, (xSize) / 2f, -1);
+        Camera.main.transform.position = new Vector3((ySize - 3) / 2f, (xSize ) / 2f, -1);
     }
 
     void Start()
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         {
             UIManager.instance.SetTower(i, towers[i].cost, towers[i].icon);
         }
-        MoneyChange();
+        UpdateUI();
         spawner.StartNewLevel();
     }
 
@@ -67,16 +67,13 @@ public class GameManager : MonoBehaviour
                 go.name = "Tile (" + i + ", " + j + ")";
                 map[i, j] = go.GetComponent<Tile>();
                 map[i, j].Init(i, j, onTileClick);
+
             }
         }
     }
 
-    private void MoneyChange()
+    private void UpdateUI()
     {
-        if(onMoneyChange != null)
-        {
-            onMoneyChange();
-        }
         UIManager.instance.SetMoney(money);
     }
 
@@ -91,7 +88,7 @@ public class GameManager : MonoBehaviour
         {
             map[x, y].AddTower(towers[towerID]);
             money -= towers[towerID].cost;
-            MoneyChange();
+            UpdateUI();
         }
     }
 
@@ -105,7 +102,7 @@ public class GameManager : MonoBehaviour
     public void AddMoney(int money)
     {
         this.money += money;
-        MoneyChange();
+        UpdateUI();
     }
 
     private bool IsNotBlockingEnemies(int X, int Y)
