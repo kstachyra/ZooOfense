@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameOverWindow;
     public Text finishText;
+    public Text dayendtext;
 
 
     void Awake()
@@ -144,8 +145,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("loser!");
 
         finishText.text = captured.ToString();
-
-
+        dayendtext.text = spawner.level.ToString();
         //Okno przegranej i do wybory
         gameOverWindow.SetActive(true);
 

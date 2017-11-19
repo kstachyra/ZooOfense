@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
     float timeFrame;
     float startTime;
 
-    int level = 1;
+    public int level = 1;
 
 
     private List<Enemy> enemiesList = new List<Enemy>();
@@ -48,10 +48,10 @@ public class EnemySpawner : MonoBehaviour
     private IEnumerator FinalWave()
     {
         //nie ma juz wrogow
-        while (true)
+        while(true)
         {
             yield return new WaitForSeconds(5);
-            if (CheckIfMapEmpty())
+            if(CheckIfMapEmpty())
             {
 
                 break;
@@ -66,14 +66,14 @@ public class EnemySpawner : MonoBehaviour
 
         int howMany = enemies * (level);
         howMany++;
-        for (int i = 0; i < howMany; ++i)
+        for(int i = 0; i < howMany; ++i)
         {
             int enemyType = 0;
 
             //upgrade enemy
-            for (int e = 0; e < enemyTypes - 1; ++e)
+            for(int e = 0; e < enemyTypes - 1; ++e)
             {
-                if (UnityEngine.Random.Range(0.0f, 2f) < 1.0f)
+                if(UnityEngine.Random.Range(0.0f, 2f) < 1.0f)
                 {
                     enemyType++;
                 }
@@ -84,10 +84,10 @@ public class EnemySpawner : MonoBehaviour
 
 
         //nie ma juz wrogow
-        while (true)
+        while(true)
         {
             yield return new WaitForSeconds(7);
-            if (CheckIfMapEmpty())
+            if(CheckIfMapEmpty())
             {
                 break;
             }
@@ -115,9 +115,9 @@ public class EnemySpawner : MonoBehaviour
 
     private bool CheckIfMapEmpty()
     {
-        foreach (Enemy e in enemiesList)
+        foreach(Enemy e in enemiesList)
         {
-            if (e != null) return false;
+            if(e != null) return false;
         }
 
         Debug.Log("Map EMPTY!");
@@ -143,7 +143,7 @@ public class EnemySpawner : MonoBehaviour
                 int enemyType = 0;
 
                 //upgrade enemy
-                for(int e = 0; e < enemyTypes -1; ++e)
+                for(int e = 0; e < enemyTypes - 1; ++e)
                 {
                     if(UnityEngine.Random.Range(0.0f, 2f) < wave.Evaluate(timePassed / roundTime))
                     {
@@ -168,7 +168,7 @@ public class EnemySpawner : MonoBehaviour
         yield return new WaitForSeconds(UnityEngine.Random.Range(0, timeFrame));
 
         Enemy newEnemy;
-        switch (enemyType)
+        switch(enemyType)
         {
             case 0:
                 newEnemy = (Instantiate(Enemy1)).GetComponent<Enemy>();
@@ -190,7 +190,7 @@ public class EnemySpawner : MonoBehaviour
         int y = GameManager.instance.xSize;
 
         y = UnityEngine.Random.Range(0, y);
-        Node enemyPosition = new Node(x-1, y);
+        Node enemyPosition = new Node(x - 1, y);
 
         newEnemy.transform.position = new Vector3(enemyPosition.X, enemyPosition.Y, transform.position.z);
         newEnemy.CalculatePath(enemyPosition, GameManager.destination);
