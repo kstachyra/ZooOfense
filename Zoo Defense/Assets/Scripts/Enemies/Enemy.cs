@@ -80,6 +80,7 @@ public class Enemy : MonoBehaviour
     {
         died = true;
         GameManager.instance.enemiesCount[currentNode.X, currentNode.Y]--;
+        GameManager.instance.captured++;
         PlayDeathAnimation();
     }
 
@@ -102,6 +103,7 @@ public class Enemy : MonoBehaviour
 
     private void HurtPlayer()
     {
+        GameManager.instance.ChangeLifes(-1);
         GetComponent<Animator>().speed = 2;
         transform.DOMove(transform.position + new Vector3(-2, 0, 0), 0.4f).OnComplete(() =>
         {

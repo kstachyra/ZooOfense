@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public static event Action onMoneyChange;
     public static Node destination;
 
+    public int lifes = 10;
+    public int captured = 0;
     public int money = 3000;
     public EnemySpawner spawner;
     public Tower[] towers;
@@ -106,6 +108,18 @@ public class GameManager : MonoBehaviour
     {
         this.money += money;
         MoneyChange();
+    }
+
+    public void ChangeLifes(int lifes)
+    {
+        this.lifes += lifes;
+        if(this.lifes <= 0)
+            GameOver();
+    }
+
+    private void GameOver()
+    {
+        Debug.Log("loser!");
     }
 
     private bool IsNotBlockingEnemies(int X, int Y)
