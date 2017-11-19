@@ -7,15 +7,18 @@ public class Tower1 : Tower
 {
     public Transform hand;
     public GameObject kula_Pingwin;
-	public GameObject particle_sys_ping;
+    public GameObject particle_sys_ping;
+
+    public Sprite[] body;
+    public Sprite[] handSprites;
 
     public override void Attack()
     {
         base.FocusEnemy();
         GameObject kula = Instantiate(kula_Pingwin);
         kula.transform.position = transform.position;
-		GameObject particle = Instantiate(particle_sys_ping);
-		particle.transform.position = transform.position;
+        GameObject particle = Instantiate(particle_sys_ping);
+        particle.transform.position = transform.position;
         if(focusedEnemy != null)
         {
             float distance = Vector3.Distance(transform.position, focusedEnemy.transform.position);
@@ -40,5 +43,11 @@ public class Tower1 : Tower
             var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             hand.rotation = Quaternion.AngleAxis(angle + (transform.localScale.x == 1 ? 0 : 180), Vector3.forward);
         }
+    }
+
+    public override void SetUpgrade()
+    {
+        transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = body[currentLevel - 1];
+        hand.GetComponent<SpriteRenderer>().sprite = handSprites[currentLevel - 1];
     }
 }
