@@ -7,12 +7,15 @@ public class Tower1 : Tower
 {
     public Transform hand;
     public GameObject kula_Pingwin;
+	public GameObject particle_sys_ping;
 
     public override void Attack()
     {
         base.FocusEnemy();
         GameObject kula = Instantiate(kula_Pingwin);
         kula.transform.position = transform.position;
+		GameObject particle = Instantiate(particle_sys_ping);
+		particle.transform.position = transform.position;
         if(focusedEnemy != null)
         {
             float distance = Vector3.Distance(transform.position, focusedEnemy.transform.position);

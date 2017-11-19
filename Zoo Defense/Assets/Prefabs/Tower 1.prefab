@@ -206,6 +206,8 @@ MonoBehaviour:
   hand: {fileID: 4372491443600734}
   kula_Pingwin: {fileID: 1672920614022794, guid: 7445e6b7346e53741909cbe3d102503e,
     type: 2}
+  particle_sys_ping: {fileID: 1981610009205448, guid: 5aa687809441b7642a9355210484f803,
+    type: 2}
 --- !u!212 &212712753561063936
 SpriteRenderer:
   m_ObjectHideFlags: 1
