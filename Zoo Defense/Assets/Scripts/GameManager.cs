@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
 
 
     public int lifes = 10;
-    public int captured = 0;
+    public int currentlifes;
+    private int captured = 0;
     public int money = 3000;
     public EnemySpawner spawner;
     public Tower[] towers;
@@ -40,11 +41,15 @@ public class GameManager : MonoBehaviour
         Astar.SetGrid(towersMap);
 
         GenerateMap(ySize, xSize);
-        Camera.main.transform.position = new Vector3((ySize - 3) / 2f, (xSize ) / 2f, -1);
+        Camera.main.transform.position = new Vector3((ySize - 3) / 2f, (xSize) / 2f, -1);
     }
 
     void Start()
     {
+        UIManager.instance.SetLife(lifes, lifes);
+        UIManager.instance.SetMoney(money);
+
+        currentlifes = lifes;
         for(int i = 0; i < towers.Length; i++)
         {
             UIManager.instance.SetTower(i, towers[i].cost, towers[i].icon);
@@ -111,10 +116,17 @@ public class GameManager : MonoBehaviour
         UpdateUI();
     }
 
+    public void AddCaptured(int captured)
+    {
+        this.captured += captured;
+        UIManager.instance.SetCaptured(this.captured);
+    }
+
     public void ChangeLifes(int lifes)
     {
-        this.lifes += lifes;
-        if(this.lifes <= 0)
+        this.currentlifes += lifes;
+        UIManager.instance.SetLife(Mathf.Clamp(currentlifes, 0, 1000), this.lifes);
+        if(this.currentlifes <= 0)
             GameOver();
     }
 

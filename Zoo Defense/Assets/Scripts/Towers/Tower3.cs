@@ -6,13 +6,10 @@ using UnityEngine;
 public class Tower3 : Tower
 {
     public GameObject nutPrefab;
-    public GameObject particle_sys_squir;
 
     public override void Attack()
     {
         base.FocusEnemy();
-        GameObject particle = Instantiate(particle_sys_squir);
-        particle.transform.position = transform.position;
         GetComponent<Animator>().SetTrigger("Shoot");
         StartCoroutine(WaitAndSpawnNut());
     }
@@ -20,6 +17,7 @@ public class Tower3 : Tower
     IEnumerator WaitAndSpawnNut()
     {
         yield return new WaitForSeconds(0.5f);
+        GetComponent<AudioSource>().Play();
         if(focusedEnemy != null)
         {
             GameObject kula = Instantiate(nutPrefab);
@@ -45,5 +43,11 @@ public class Tower3 : Tower
             var dir = (focusedEnemy.transform.position - transform.position).normalized;
             transform.localScale = new Vector3(dir.x >= 0 ? 1 : -1, 1, 1);
         }
+    }
+
+    public override void SetUpgrade()
+    {
+        GetComponent<Animator>().SetTrigger("LevelUp");
+        base.SetUpgrade();
     }
 }

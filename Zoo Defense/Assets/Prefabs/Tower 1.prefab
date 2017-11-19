@@ -208,6 +208,14 @@ MonoBehaviour:
     type: 2}
   particle_sys_ping: {fileID: 1981610009205448, guid: 5aa687809441b7642a9355210484f803,
     type: 2}
+  body:
+  - {fileID: 21300000, guid: 38e66ea01263aa84ab4400ba143b62bc, type: 3}
+  - {fileID: 21300000, guid: 6403737d47805fe42b9ad300cc201149, type: 3}
+  - {fileID: 21300000, guid: 37f97430ed40fd642b04747913339007, type: 3}
+  handSprites:
+  - {fileID: 21300000, guid: fb9359638990fa245b9f73b9fc4c03a1, type: 3}
+  - {fileID: 21300000, guid: d2429460129653749a8b84418bb70ff7, type: 3}
+  - {fileID: 21300000, guid: ffcd2ec1420e25943b55eac9b3fec93c, type: 3}
 --- !u!212 &212712753561063936
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour
     {
         died = true;
         GameManager.instance.enemiesCount[currentNode.X, currentNode.Y]--;
-        GameManager.instance.captured++;
+        GameManager.instance.AddCaptured(1);
         PlayDeathAnimation();
     }
 

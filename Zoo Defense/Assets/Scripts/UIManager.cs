@@ -12,12 +12,15 @@ public class UIManager : MonoBehaviour
     public static int selectedTower = -1;
 
     public Button upgradeButton;
-    public static event Action <bool> onTowerUIChange;
+    public static event Action<bool> onTowerUIChange;
 
     public Transform sellCanvas;
     public Button sellButton;
     public Text levelText;
     public Text moneyText;
+    public Text capturedText;
+    public Text lifeText;
+
     public ToggleGroup toggleGroup;
     public Image[] towersImage;
     public Text[] towersPrice;
@@ -36,17 +39,27 @@ public class UIManager : MonoBehaviour
 
     public void SetLevel(int level)
     {
-        levelText.text = "Day: " + level.ToString();
+        levelText.text = level.ToString();
     }
 
     public void SetMoney(int money)
     {
-        moneyText.text = "Money: " + money + "$";
+        moneyText.text = money.ToString();
+    }
+
+    public void SetCaptured(int captured)
+    {
+        capturedText.text = captured.ToString();
+    }
+
+    public void SetLife(int current, int max)
+    {
+        lifeText.text = current + "/" + max;
     }
 
     public void DisableTowerClick()
     {
-        if (onTowerUIChange != null)
+        if(onTowerUIChange != null)
         {
             onTowerUIChange(false);
         }
@@ -56,7 +69,7 @@ public class UIManager : MonoBehaviour
 
     public void OnTowerClick(bool active)
     {
-        if (onTowerUIChange != null)
+        if(onTowerUIChange != null)
         {
             onTowerUIChange(active);
         }
