@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     Tile[,] map;
 
     public GameObject gameOverWindow;
+    public Text finishText;
 
 
     void Awake()
@@ -141,6 +142,8 @@ public class GameManager : MonoBehaviour
     {
         Destroy(spawner);
         Debug.Log("loser!");
+
+        finishText.text = captured.ToString();
 
 
         //Okno przegranej i do wybory
