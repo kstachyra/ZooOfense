@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4594560175999188}
   - component: {fileID: 212661934281064422}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 58296113920960400}
   - component: {fileID: 50756127689808486}
   - component: {fileID: 95500409363525762}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 223426108407557700}
   - component: {fileID: 114702690707327558}
   - component: {fileID: 114526991233947136}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 114395670219985454}
   - component: {fileID: 114800390103196146}
   - component: {fileID: 225739154510515060}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MoneyTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaf1eff8de323dc4eb9fcaedb8957f73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  updatesCost: 
   speed: 0.7
   life: 35
   moneyDrop: 12
