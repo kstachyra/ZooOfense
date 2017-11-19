@@ -53,6 +53,12 @@ public class Tile : MonoBehaviour
 
     public void onTowerUIChange(bool status)
     {
-        GetComponent<SpriteRenderer>().enabled = status && !HasTower();
+        if (GetComponent<SpriteRenderer>() != null)
+            GetComponent<SpriteRenderer>().enabled = status && !HasTower();
+    }
+
+    public void OnDestroy()
+    {
+        UIManager.onTowerUIChange -= onTowerUIChange;
     }
 }

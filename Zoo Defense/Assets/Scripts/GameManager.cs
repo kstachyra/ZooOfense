@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
     public void restart()
     {
         gameOverWindow.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(0);
     }
 
     public void backToMenu()
