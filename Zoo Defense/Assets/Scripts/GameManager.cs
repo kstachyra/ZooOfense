@@ -180,13 +180,13 @@ public class GameManager : MonoBehaviour
     public void restart()
     {
         gameOverWindow.SetActive(false);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("main");
     }
 
     public void backToMenu()
     {
         gameOverWindow.SetActive(false);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("menu");
         PlayerPrefs.SetInt("back", 1);
     }
 }
